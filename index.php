@@ -88,12 +88,12 @@ if (isset($_GET['id'])) {
         <?php while ($book = mysqli_fetch_assoc($books)) : ?>
           <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <div class="card h-100">
-              <a href="#"><img class="card-img-top" src="admin/photos/<?php echo $book['cover'] ?>" height=100%></a>
+              <a href="showdetail.php?bookid=<?php echo $book['id']?>"><img class="card-img-top" src="admin/photos/<?php echo $book['cover'] ?>" height=100%></a>
               <div class="card-body">
                 <h6 class="card-title">
-                  <a href="#"><?php echo $book['title'] ?></a>
+                  <a href="showdetail.php?bookid=<?php echo $book['id']?>"><?php echo $book['title'] ?></a>
                 </h6>
-                <h6><?php echo $book['price'] ?>ks</h6>
+                <h6><?php echo number_format($book['price']) ?>ks</h6>
               </div>
                 <button class="btn btn-primary m-3">Add to Cart</button>
             </div>
@@ -112,16 +112,10 @@ if (isset($_GET['id'])) {
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+  <?php require "footer.php"?>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <?php require "scripts.php"?>
 
 </body>
 
