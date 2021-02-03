@@ -4,8 +4,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Book Project</title>
-
+    <title>Book Project Admin</title>
+    <link rel="shortcut icon" href="photos/apple.jpg" type="images/x-icon">
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link

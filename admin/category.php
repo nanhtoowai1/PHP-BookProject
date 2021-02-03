@@ -1,4 +1,5 @@
 <?php
+require "config/auth.php";
 require "config/config.php";
 $result = mysqli_query($conn, "SELECT * FROM categories");
 //echo(mysqli_num_rows($result));

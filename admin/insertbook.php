@@ -24,24 +24,33 @@ $title = str_replace("!", " ", $title);
 $author = str_replace("'", "''", $author);
 $author = str_replace("!", " ", $author);
 
-if ($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png" || $type == "image/gif") {
-    if (strlen($price) < 6 && strlen($price) > 2) {
-        move_uploaded_file($tmp, $target);
+$error = "";
 
-        $sql = "INSERT INTO books(title,summary,category_id,author,price,cover) 
+//price error
+if (!(strlen($price) < 6 && strlen($price) > 2)) {
+	$error .= "&price=error";
+}
+
+if (!($type == "image/jpeg" || $type == "image/jpg" || $type == "image/png" || $type == "image/gif")) {
+    $error .="&cover=error";
+}
+
+if($error==""){
+    move_uploaded_file($tmp, $target);
+
+    $sql = "INSERT INTO books(title,summary,category_id,author,price,cover) 
     VALUES ('$title','$summary','$category','$author',$price,'$cover')";
 
-        $i = mysqli_query($conn, $sql);
+    $i = mysqli_query($conn, $sql);
 
         if ($i) {
             header("location:book.php?result=1");
         } else {
             echo "$sql";
         }
-    }
-    else{
-        header("location:addbook.php?price=error");
-    }
-} else {
-    header("location:addbook.php?cover=error");
 }
+else{
+    header("location:addbook.php?$error");
+}
+
+   
