@@ -95,7 +95,16 @@ if (isset($_GET['id'])) {
                 </h6>
                 <h6><?php echo number_format($book['price']) ?>ks</h6>
               </div>
-                <button class="btn btn-primary m-3">Add to Cart</button>
+              <?php if(isset($_SESSION['user'])): ?>
+                    <a href="addtocart.php?cartid=<?php echo $book['id'] ?>" class="btn btn-outline-primary m-3">
+                    Add to Cart <i class="fas fa-shopping-cart text-primary mr-auto"></i>
+                    </a>
+
+                  <?php else:?>
+                  <a class="btn btn-outline-primary m-3" onclick="return alert('You need to login first!')">
+                    Add to Cart <i class="fas fa-shopping-cart text-primary mr-auto"></i>
+                  </a>
+                <?php endif?>
             </div>
           </div>
           <?php endwhile?>
